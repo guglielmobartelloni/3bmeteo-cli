@@ -7,9 +7,10 @@ import (
 	"net/http"
 )
 
+// Search the location id using a given string
 func SearchId(searchTerm string) int {
 
-	url := "https://api.3bmeteo.com/mobilev3/api_localita/ricerca_elastic_search/firenze/it/italia/?format=json2&X-API-KEY=fhrwRdevqwq8r7q9UXTwP6lSX74g34jnQ6756tGo"
+	url := "https://api.3bmeteo.com/mobilev3/api_localita/ricerca_elastic_search/" + searchTerm + "/it/italia/?format=json2&X-API-KEY=fhrwRdevqwq8r7q9UXTwP6lSX74g34jnQ6756tGo"
 	method := "GET"
 
 	client := &http.Client{}
@@ -36,6 +37,6 @@ func SearchId(searchTerm string) int {
 		fmt.Println(err)
 	}
 
+	//Takes the first occurence (needs to be selectable)
 	return localitaResponse.Localita[0].ID
-
 }

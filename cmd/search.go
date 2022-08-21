@@ -5,6 +5,7 @@ Copyright © 2022 Guglielmo Bartelloni bartelloni.guglielmo@gmail.com
 package cmd
 
 import (
+	"3bmeteo/api"
 	"fmt"
 	"strings"
 
@@ -17,7 +18,7 @@ var searchCmd = &cobra.Command{
 	Short: "Search wheater information about a location",
 	Run: func(cmd *cobra.Command, args []string) {
 		searchTerm := strings.Join(args, " ")
-		fmt.Println(searchTerm)
+		fmt.Println(api.SearchId(searchTerm))
 	},
 }
 
