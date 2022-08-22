@@ -9,7 +9,23 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/charmbracelet/lipgloss"
 	"github.com/spf13/cobra"
+)
+
+var (
+	mainColor = lipgloss.NewStyle().
+			Foreground(lipgloss.AdaptiveColor{Light: "#FCE2DB", Dark: "#FCE2DB"}).
+			Render
+	secondColor = lipgloss.NewStyle().
+			Foreground(lipgloss.AdaptiveColor{Light: "#FF8FB1", Dark: "#FF8FB1"}).
+			Render
+	thirdColor = lipgloss.NewStyle().
+			Foreground(lipgloss.AdaptiveColor{Light: "#B270A2", Dark: "#B270A2"}).
+			Render
+	fourthColor = lipgloss.NewStyle().
+			Foreground(lipgloss.AdaptiveColor{Light: "#7A4495", Dark: "#7A4495"}).
+			Render
 )
 
 // searchCmd represents the search command
@@ -27,9 +43,11 @@ var searchCmd = &cobra.Command{
 		if err != nil {
 			panic(err)
 		}
-		for _, day := range forecastData.Localita.PrevisioneGiorno {
-			fmt.Println(day.Attendibilita, " ", day.TempoMedio.ProbabilitaPrec, "%")
-		}
+
+		fmt.Println(mainColor(fmt.Sprintf("%s, %s", forecastData.Localita.Localita, forecastData.Localita.Prov)))
+		fmt.Println(secondColor(fmt.Sprintf("Accuratezza: %s", forecastData.Localita.PrevisioneGiorno[0].Attendibilita)))
+		fmt.Println(thirdColor(fmt.Sprintf("Condizioni attuali: %s", forecastData.Localita.PrevisioneGiorno[0].PrevisioneOraria[0].DescBreve)))
+		fmt.Println(fourthColor(fmt.Sprintf("Temperature: %dC, %dC", forecastData.Localita.PrevisioneGiorno[0].TempoMedio.TMin, forecastData.Localita.PrevisioneGiorno[0].TempoMedio.TMax)))
 	},
 }
 
