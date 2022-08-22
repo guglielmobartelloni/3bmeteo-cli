@@ -24,8 +24,8 @@ func TestGetCoordinatesFromSearchTermWithValidParameter(t *testing.T) {
 
 	lat, lon, err := GetCoordinatesFromSearchTerm("firenze")
 
-	assert.NotEqual(t, lat, 0.0, "Lat should not be 0")
-	assert.NotEqual(t, lon, 0.0, "Lon should not be 0")
+	assert.Equal(t, lat, 43.769599999999997, "Lat doesn't correspond")
+	assert.Equal(t, lon, 11.255800000000001, "Lon doesn't correspond")
 	assert.Nil(t, err, "Error should be nil")
 
 }
