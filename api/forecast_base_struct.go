@@ -81,7 +81,7 @@ type Foto struct {
 	ThumbnailHd string `json:"thumbnail_hd"`
 }
 type Localita struct {
-	ID               float64            `json:"id"`
+	ID               int                `json:"id"`
 	Localita         string             `json:"localita"`
 	Prov             string             `json:"prov"`
 	PrevisioneGiorno []PrevisioneGiorno `json:"previsione_giorno"`

@@ -18,7 +18,13 @@ var searchCmd = &cobra.Command{
 	Short: "Search wheater information about a location",
 	Run: func(cmd *cobra.Command, args []string) {
 		searchTerm := strings.Join(args, " ")
-		fmt.Println(api.GetBasicForecast(api.SearchLocation(searchTerm)))
+		forecastData, err := api.GetBasicForecast(api.GetCoordinatesFromSearchTerm(searchTerm))
+		if err != nil {
+			panic(err)
+		}
+		for _, day := range forecastData.Localita.PrevisioneGiorno {
+			fmt.Println(day.Attendibilita, " ", day.TempoMedio.ProbabilitaPrec, "%")
+		}
 	},
 }
 
