@@ -44,10 +44,12 @@ var searchCmd = &cobra.Command{
 			panic(err)
 		}
 
-		fmt.Println(mainColor(fmt.Sprintf("%s, %s", forecastData.Localita.Localita, forecastData.Localita.Prov)))
-		fmt.Println(secondColor(fmt.Sprintf("Accuratezza: %s", forecastData.Localita.PrevisioneGiorno[0].Attendibilita)))
-		fmt.Println(thirdColor(fmt.Sprintf("Condizioni attuali: %s", forecastData.Localita.PrevisioneGiorno[0].PrevisioneOraria[0].DescBreve)))
-		fmt.Println(fourthColor(fmt.Sprintf("Temperature: %dC, %dC", forecastData.Localita.PrevisioneGiorno[0].TempoMedio.TMin, forecastData.Localita.PrevisioneGiorno[0].TempoMedio.TMax)))
+		fmt.Println(secondColor(fmt.Sprintf("%s, %s", forecastData.Localita.Localita, forecastData.Localita.Prov)))
+		fmt.Println(fmt.Sprintf(mainColor("Accuratezza: %s"), secondColor(forecastData.Localita.PrevisioneGiorno[0].Attendibilita)))
+		fmt.Println(fmt.Sprintf(mainColor("Condizioni attuali: %s"), secondColor(forecastData.Localita.PrevisioneGiorno[0].PrevisioneOraria[0].DescBreve)))
+		fmt.Println(fmt.Sprintf(mainColor("Probabilità pioggia: %d"), forecastData.Localita.PrevisioneGiorno[0].TempoMedio.ProbabilitaPrec))
+		fmt.Println(fmt.Sprintf(mainColor("Temperature: %dC, %dC"), forecastData.Localita.PrevisioneGiorno[0].TempoMedio.TMin,
+			forecastData.Localita.PrevisioneGiorno[0].TempoMedio.TMax))
 	},
 }
 

@@ -53,7 +53,7 @@ type PrevisioneOraria struct {
 	Notte             float64           `json:"notte"`
 	Precipitazioni    float64           `json:"precipitazioni"`
 	PrecInt           string            `json:"prec_int"`
-	ProbabilitaPrec   float64           `json:"probabilita_prec"`
+	ProbabilitaPrec   int               `json:"probabilita_prec"`
 	NP                string            `json:"n_p"`
 	PrecUnita         string            `json:"prec_unita"`
 	IDSimbolo         string            `json:"id_simbolo"`
